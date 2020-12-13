@@ -35,20 +35,18 @@ margin-bottom:10px;
 const ExchangesPresenter = ({ showExchanges, error, loading }) =>loading ? (<Container>loading....</Container>) : (
     <Container>
           {showExchanges && showExchanges.length > 0 && <List>{showExchanges.map(exchange => {
-            console.log(exchange);
-          return <Item id={exchange.id}>
+            // console.log(exchange);
+            
+          return (
+          
+          <Item id={exchange.id}>
             <Title>{exchange.name}</Title>
-            <Desc>{exchange.description}</Desc>
-            {/* <div>
-            {(exchange.links.website) === null ? (
-                <div>no website</div>
-              ) :(
-                <div>{exchange.links.website}</div>
-              )}
-              </div> */}
+            <Desc>{(exchange.description !== null && exchange.description.length> 0) ? (<div>{exchange.description.slice(0,100)}...</div>) :(<div>No Description</div>) }</Desc>
+          <Link>{(exchange.links !== null && exchange.links.length >0) ? (<div>No Links</div>) : (<div>Link : {console.log(exchange.links)}</div>)}</Link>
             </Item>
-          }
-          )}</List>}
+          )
+            
+          })}</List>}
     </Container>
   );
 
